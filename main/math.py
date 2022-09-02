@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 import random
-from time import sleep
+import time
 from typing import List
 
 
@@ -26,7 +26,7 @@ class ExtensiveComputationFigure(Figure):
         self.b = random.randint(1, 55)
 
     def circumference(self):
-        sleep(10)
+        time.sleep(10)
         return 100
 
     def area(self):
@@ -39,8 +39,18 @@ class ExtensiveComputationFigure(Figure):
 """
 Fill out the implementation
 """
+
+
 class Rectangle(Figure):
-    pass
+    def __init__(self, a, b):
+        self.a = a
+        self.b = b
+
+    def circumference(self):
+        return 2 * self.a + 2 * self.b
+
+    def area(self):
+        return self.a * self.b
 
 
 class FigureCollector:

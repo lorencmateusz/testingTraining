@@ -11,5 +11,9 @@ Test the functions of FigureCollector class:
 4. area for multiple "subclasses" of Figure class (using mock with all the needed functions)
 
 """
+import pytest
+
+
 class TestFigureCollector:
-    pass
+    @pytest.mark.parametrize("")
+    def test_circumference(self):
