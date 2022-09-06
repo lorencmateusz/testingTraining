@@ -10,14 +10,11 @@ Do not change the implementation of the ExtensiveComputationFigure class itself
 import pytest
 from unittest.mock import patch
 import random
-import time
+from main import math
 from main.math import ExtensiveComputationFigure
 
 
-
-
-
-class MockExtensiveComputationFigure(ExtensiveComputationFigure):
+class MockExtensiveComputationFigure(math.ExtensiveComputationFigure):
     def __init__(self, a, b):
         super().__init__()
         self.a = a
@@ -27,20 +24,19 @@ class MockExtensiveComputationFigure(ExtensiveComputationFigure):
 class TestExtensiveComputationFigure:
 
     def test_circumference(self, monkeypatch):
-        monkeypatch.setattr(time, "sleep", lambda x: 0)
-        test_figure = ExtensiveComputationFigure()
+        monkeypatch.setattr(math.time, "sleep", lambda x: 0)
+        test_figure = math.ExtensiveComputationFigure()
 
         circumference = test_figure.circumference()
 
         assert circumference == 100
 
-    def test_area(self, monkeypatch):
-        def mock_random(x, y):
-            return 3
-        monkeypatch.setattr(random, "randint", mock_random)
-
+    @patch("main.math.random.randint")
+    def test_area(self, randint):
+        # monkeypatch.setattr(math, "ExtensiveComputationFigure", MockExtensiveComputationFigure)
+        randint.side_effect = [1, 2]
         test_figure = ExtensiveComputationFigure()
 
         area = test_figure.area()
 
-        assert area == 15
+        assert area == 1

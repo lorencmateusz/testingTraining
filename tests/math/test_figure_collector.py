@@ -12,8 +12,47 @@ Test the functions of FigureCollector class:
 
 """
 import pytest
+from main.math import FigureCollector, Figure, Rectangle
+
+
+class MockSquare(Figure):
+    def __init__(self, a):
+        self.a = a
+
+    def circumference(self):
+        return 4 * self.a
+
+    def area(self):
+        return self.a**2
+
+
+square_one = MockSquare(1)
+
+
+@pytest.fixture()
+def a():
+    return FigureCollector()
+
+
+def mock_figure_adder(a, figures_count):
+    sqr = Rectangle(1, 1)
+    for i in range(figures_count):
+        a.add_figure(sqr)
 
 
 class TestFigureCollector:
-    @pytest.mark.parametrize("")
-    def test_circumference(self):
+    @pytest.mark.parametrize("figures_count, expected", [(0, 0), (1, 4), (2, 8)])
+    def test_circumference(self, a, figures_count, expected):
+        mock_figure_adder(a, figures_count)
+
+        one_square_one_circumference = a.circumference()
+
+        assert one_square_one_circumference == expected
+
+    @pytest.mark.parametrize("figures_count, expected", [(1, 4)])
+    def test_area(self, a, figures_count, expected):
+        mock_figure_adder(a, figures_count)
+
+        one_square_one_area = a.area()
+
+        assert one_square_one_area == expected

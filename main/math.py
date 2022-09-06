@@ -58,6 +58,10 @@ class FigureCollector:
     def __init__(self):
         self.figures: List[Figure] = []
 
+    def foo(self):
+        for figure in self.figures:
+            figure.area()
+
     def add_figure(self, figure: Figure):
         self.figures.append(figure)
 
@@ -66,3 +70,13 @@ class FigureCollector:
 
     def area(self):
         return sum([figure.area() for figure in self.figures])
+
+    def print_list(self):
+        print(self.figures)
+
+
+a = Rectangle(1, 1)
+x = FigureCollector()
+x.add_figure(a)
+
+print(x.circumference())
