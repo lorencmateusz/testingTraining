@@ -79,4 +79,4 @@ a = Rectangle(1, 1)
 x = FigureCollector()
 x.add_figure(a)
 
-print(x.circumference())
+print(x.area())
