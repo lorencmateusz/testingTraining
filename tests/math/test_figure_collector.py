@@ -49,7 +49,7 @@ class TestFigureCollector:
 
         assert one_square_one_circumference == expected
 
-    @pytest.mark.parametrize("figures_count, expected", [(1, 1)])
+    @pytest.mark.parametrize("figures_count, expected", [(1, 1), (2, 2), (3, 3)])
     def test_area(self, a, figures_count, expected):
         mock_figure_adder(a, figures_count)
 
