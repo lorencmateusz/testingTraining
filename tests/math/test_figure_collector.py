@@ -42,7 +42,7 @@ def mock_figure_adder(a, figures_count):
 
 class TestFigureCollector:
     @pytest.mark.parametrize("figures_count, expected", [(0, 0), (1, 4), (2, 8)])
-    def test_circumference(self, a, figures_count, expected):
+    def test_circumference_square(self, a, figures_count, expected):
         mock_figure_adder(a, figures_count)
 
         one_square_one_circumference = a.circumference()
@@ -50,9 +50,16 @@ class TestFigureCollector:
         assert one_square_one_circumference == expected
 
     @pytest.mark.parametrize("figures_count, expected", [(1, 1), (2, 2), (3, 3)])
-    def test_area(self, a, figures_count, expected):
+    def test_area_square(self, a, figures_count, expected):
         mock_figure_adder(a, figures_count)
 
         one_square_one_area = a.area()
 
         assert one_square_one_area == expected
+
+    def test_circumference_custom_figure(self):
+        pass
+
+    def test_area_custom_figure(self):
+        pass
+
